@@ -125,6 +125,8 @@ Setting up AWS Secret Manager to store the credentials
 
 - Save the secret
 
+<img width="1381" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/17cdf53b-923f-4c07-88a3-c18bc4af73ea">
+
 
 
 
