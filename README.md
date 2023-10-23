@@ -112,14 +112,14 @@ Run ```terraform apply``` to provision VPC
 ## Database
 Key Notes:
 - Username and password credentials: To avoid pushing sensitive information like database username and password to gitrepo, we can make use AWS Secret Manager to store them
-- Security group: We need to setup a firewall for the database.
+- Security group: We need to setup a firewall for the database
 
 Setting up AWS Secret Manager to store the credentials
 - Select the type of secret you want to store and enter the values
 
 <img width="822" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/a20031ad-a285-4e08-8404-cd6716249390">
 
-- Specify the name you want to give the secret
+- Specify the name you want to give the secret (db-creds-v2)
 
 <img width="848" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/558281fe-e983-4c2e-9018-ba7ac9114dfd">
 
@@ -127,9 +127,100 @@ Setting up AWS Secret Manager to store the credentials
 
 <img width="1381" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/17cdf53b-923f-4c07-88a3-c18bc4af73ea">
 
+We will reference the secret we created which contains the username and password for the database setup
+
+Setting up Security group for the database
+
+```
+module "sg-rds" {
+  source                   = "terraform-aws-modules/security-group/aws"
+  version                  = "4.9.0"
+  name                     = var.sg-name
+  vpc_id                   = module.vpc.vpc_id
+  create                   = var.create
+  ingress_cidr_blocks      = var.ingress_cidr_blocks
+  ingress_rules            = var.ingress_rules
+  ingress_with_cidr_blocks = var.ingress_with_cidr_blocks
+  egress_with_cidr_blocks  = var.egress_with_cidr_blocks
+  egress_cidr_blocks       = var.egress_cidr_blocks
+  egress_rules             = var.egress_rules
+}
+```
+
+```
+################
+# Security-Group-RDS variables
+################
+sg-name             = "mysql-rds-sg"
+create              = true
+ingress_cidr_blocks = []
+egress_cidr_blocks  = ["10.0.0.0/16"]
+ingress_rules       = [/*"http-80-tcp",*/]
+egress_rules        = [/*"http-80-tcp",*/]
+ingress_with_cidr_blocks = [
+  {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    description = "open port range 3306/tcp ingress rule"
+    cidr_blocks = "10.0.0.0/16"
+  }
+]
+egress_with_cidr_blocks = []
+```
 
 
 
+```
+data "aws_secretsmanager_secret_version" "creds" {
+  secret_id = "db-creds-v2"
+}
+
+locals {
+  db_creds = jsondecode(
+    data.aws_secretsmanager_secret_version.creds.secret_string
+  )
+}
+
+
+module "rds" {
+  source               = "terraform-aws-modules/rds/aws"
+  version              = "6.1.1"
+  identifier           = var.identifier
+  create_db_instance   = var.create_db_instance
+  engine               = var.engine
+  engine_version       = var.engine_version
+  instance_class       = var.instance_class
+  db_subnet_group_name = var.database_subnet_group_name
+  allocated_storage    = var.allocated_storage
+  vpc_security_group_ids = [module.sg-rds.security_group_id]
+  db_name              = var.db_name
+  username             = local.db_creds.username
+  password             = local.db_creds.password
+  port                 = var.port
+  subnet_ids           = var.database_subnets
+  family               = var.family
+  major_engine_version = var.major_engine_version
+  deletion_protection  = var.deletion_protection
+  tags                 = var.tags
+}
+```
+```
+################
+# Database variables
+################
+identifier           = "database1"
+create_db_instance   = true
+engine               = "mysql"
+engine_version       = "8.0.33"
+instance_class       = "db.t2.medium"
+allocated_storage    = 5
+db_name              = "demodb"
+port                 = "3306"
+family               = "mysql8.0"
+major_engine_version = "8.0"
+deletion_protection  = false
+```
 
 
 
