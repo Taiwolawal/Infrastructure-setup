@@ -221,5 +221,78 @@ major_engine_version = "8.0"
 deletion_protection  = false
 ```
 
+## EKS
+KeyNotes:
+- Worker Nodes: The worker nodes will be place inside the private subnet which helps to enhance security by reducing it exposure to potential threats and reduced surface attack.
+- Managed Node Group: We will make use of manage node group options since AWS help with Node upgrades, eliminating needs for manual update in the node group and other advantages.
+- Instance Type: We will make use of different instance for different workloads to help minimize cost as much as possible e.g using a mix of spot and on demand instances. 
+- Adding users: To allow user to connect to the cluster, we specify manage_aws_auth_configmap to be true.
 
+```
+module "eks" {
+  source                          = "terraform-aws-modules/eks/aws"
+  version                         = "18.29.0"
+  cluster_name                    = var.cluster_name
+  cluster_version                 = var.cluster_version
+  cluster_endpoint_private_access = var.cluster_endpoint_private_access
+  cluster_endpoint_public_access  = var.cluster_endpoint_public_access
+  cluster_addons                  = var.cluster_addons
+  vpc_id                          = module.vpc.vpc_id
+  subnet_ids                      = module.vpc.private_subnets
+  enable_irsa                     = var.enable_irsa
+  eks_managed_node_groups         = var.eks_managed_node_groups
+  manage_aws_auth_configmap       = var.manage_aws_auth_configmap
+  aws_auth_roles = [
+    {
+      rolearn  = module.eks_admins_iam_role.iam_role_arn
+      username = module.eks_admins_iam_role.iam_role_name
+      groups   = ["system:masters"]
+    },
+  ]
 
+  tags = var.tags
+}
+```
+
+```
+################
+# EKS variables
+################
+cluster_name                    = "dev-eks"
+cluster_version                 = "1.27"
+cluster_endpoint_private_access = true
+cluster_endpoint_public_access  = true
+cluster_addons = {
+  coredns = {
+    most_recent = true
+  }
+  kube-proxy = {
+    most_recent = true
+  }
+  vpc-cni = {
+    most_recent = true
+  }
+}
+
+manage_aws_auth_configmap = true
+enable_irsa               = true
+eks_managed_node_groups = {
+  general = {
+    desired_size = 1
+    min_size     = 1
+    max_size     = 10
+
+    instance_types = ["t3.medium"]
+    capacity_type  = "ON_DEMAND"
+  }
+
+  spot = {
+    desired_size = 1
+    min_size     = 1
+    max_size     = 10
+
+    instance_types = ["t3.medium"]
+    capacity_type  = "SPOT"
+  }
+}
+```
