@@ -168,6 +168,7 @@ ingress_with_cidr_blocks = [
 ]
 egress_with_cidr_blocks = []
 ```
+<img width="1395" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/e873f095-5a40-4326-aeda-0c305c97bad8">
 
 We will setup our database using the secret we created using AWS Secret Manager containing the database username and password and also make use of the security group we created for the database
 
@@ -221,12 +222,17 @@ major_engine_version = "8.0"
 deletion_protection  = false
 ```
 
+<img width="1394" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/239468bb-2913-4908-84c7-1139b84bbe52">
+
+<img width="1371" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ae430eae-6aa4-4822-a489-e433c75b6693">
+
+
 ## EKS
 KeyNotes:
-- Worker Nodes: The worker nodes will be place inside the private subnet which helps to enhance security by reducing it exposure to potential threats and reduced surface attack.
-- Managed Node Group: We will make use of manage node group options since AWS help with Node upgrades, eliminating needs for manual update in the node group and other advantages.
-- Instance Type: We will make use of different instance for different workloads to help minimize cost as much as possible e.g using a mix of spot and on demand instances. 
-- Adding users: To allow user to connect to the cluster, we specify manage_aws_auth_configmap to be true.
+- Worker Nodes: The worker nodes will be placed inside the private subnet which helps to enhance security by reducing its exposure to potential threats and reducing surface attack.
+- Managed Node Group: We will make use of manage node group options since AWS help with Node upgrades, eliminating the need for manual update in the node group and other advantages.
+- Instance Type: We will make use of different instances for different workloads to help minimize cost as much as possible e.g. using a mix of spot and on-demand instances. 
+- Adding users: To allow users to connect to the cluster, we specify manage_aws_auth_configmap to be true.
 
 ```
 module "eks" {
@@ -296,3 +302,8 @@ eks_managed_node_groups = {
   }
 }
 ```
+
+<img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f59789db-4c22-46d5-b335-49484e9cc720">
+
+<img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/6fefb7de-0528-4199-b1aa-ab1d9d831625">
+
