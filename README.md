@@ -116,4 +116,3 @@ Key Notes:
 
 Setting up AWS Secret manager to store the credentials
 
-https://www.notion.so/eks-task-2b5cad2fedde40648e5a9f2a5db5fcc5?pvs=4#627d3878366e4aeab6b155c10a2763f8
