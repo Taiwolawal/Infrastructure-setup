@@ -114,8 +114,15 @@ Key Notes:
 - Username and password credentials: To avoid pushing sensitive information like database username and password to gitrepo, we can make use AWS Secret Manager to store them
 - Security group: We need to setup a firewall for the database.
 
+Setting up AWS Secret Manager to store the credentials
+
+<img width="822" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/a20031ad-a285-4e08-8404-cd6716249390">
+
 <img width="848" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/558281fe-e983-4c2e-9018-ba7ac9114dfd">
 
+<img width="853" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/a8a66965-31e8-4dcf-8458-9c9abb052ba7">
 
-Setting up AWS Secret manager to store the credentials
+
+
+
 
