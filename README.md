@@ -169,7 +169,7 @@ ingress_with_cidr_blocks = [
 egress_with_cidr_blocks = []
 ```
 
-
+We will setup our database using the secret we created using AWS Secret Manager containing the database username and password and also make use of the security group we created for the database
 
 ```
 data "aws_secretsmanager_secret_version" "creds" {
@@ -181,7 +181,6 @@ locals {
     data.aws_secretsmanager_secret_version.creds.secret_string
   )
 }
-
 
 module "rds" {
   source               = "terraform-aws-modules/rds/aws"
