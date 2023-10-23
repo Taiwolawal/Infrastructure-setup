@@ -228,6 +228,22 @@ deletion_protection  = false
 
 
 ## EKS
+Setting up EKS, ensure to provide provider for kubernetes. 
+
+```
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
+    command     = "aws"
+  }
+}
+```
+
+The configuration essentially sets up the kubernetes provider with the necessary information to authenticate and interact with the EKS cluster. 
+
 KeyNotes:
 - Worker Nodes: The worker nodes will be placed inside the private subnet which helps to enhance security by reducing its exposure to potential threats and reducing surface attack.
 - Managed Node Group: We will make use of manage node group options since AWS help with Node upgrades, eliminating the need for manual update in the node group and other advantages.
@@ -302,6 +318,8 @@ eks_managed_node_groups = {
   }
 }
 ```
+
+Run ```terraform init``` to download the necessary modules and run ```terraform apply```
 
 <img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f59789db-4c22-46d5-b335-49484e9cc720">
 
