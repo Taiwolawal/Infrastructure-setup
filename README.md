@@ -99,6 +99,9 @@ tags = {
   Environment = "dev"
 }
 ```
+
+Run ```terraform apply``` to provision VPC
+
 <img width="1414" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/cb57dcb3-ac1b-4eb1-a0a6-e1826a3ed5d0">
 
 <img width="1421" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/90f90e88-3378-4a54-9dbf-172b90ee156c">
@@ -108,7 +111,9 @@ tags = {
 
 ## Database
 Key Notes:
-- Username and password credentials: To avoid pushing sensitive information like database username and password to gitrepo, we can make use AWS Secret Manager
+- Username and password credentials: To avoid pushing sensitive information like database username and password to gitrepo, we can make use AWS Secret Manager to store them
 - Security group: We need to setup a firewall for the database.
 
+Setting up AWS Secret manager to store the credentials
 
+https://www.notion.so/eks-task-2b5cad2fedde40648e5a9f2a5db5fcc5?pvs=4#627d3878366e4aeab6b155c10a2763f8
