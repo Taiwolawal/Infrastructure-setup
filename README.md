@@ -40,7 +40,6 @@ Run ```terraform init``` to initialize the directory and ensure all the necessar
 The architectural diagram needed to setup this infrastructure can be found below
 
 
-The modules format which allows for code reusability and also to avoid hardcoding our code we will be using variables and tfvars to declare value type and value
 
 We will be starting our infrastructure provisioning with VPC, which is where all the resources will be located.
 
@@ -99,15 +98,11 @@ tags = {
   Terraform   = "true"
   Environment = "dev"
 }
-``````
-
-The key notes setting up the VPC are:
-- High availabiliy: To ensure we have high availability we are working with 2 AZs.
-- Private subnets: To deploy our worker nodes and database.
-- NatGateway: Enable NatGateway and using a single NatGateway to minimise cost
-
+```
 
 ## Database
 Key Notes:
 - Username and password credentials: To avoid pushing sensitive information like database username and password to gitrepo, we can make use AWS Secret Manager
-- Security group: We need to setup a firewall for the database
+- Security group: We need to setup a firewall for the database.
+
+
