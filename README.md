@@ -39,9 +39,7 @@ Run ```terraform init``` to initialize the directory and ensure all the necessar
 
 The architectural diagram needed to setup this infrastructure can be found below
 
-
-
-We will be starting our infrastructure provisioning with VPC, which is where all the resources will be located.
+We will be starting our infrastructure provisioning with VPC, which is where all the resources will be located and the setups will be created using modules. Modules allow for code reusability
 
 ## VPC
 Key Notes:
