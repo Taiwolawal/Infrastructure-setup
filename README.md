@@ -463,6 +463,26 @@ eks_managed_node_groups = {
 
 Run ```terraform init``` to download the necessary modules and run ```terraform apply```
 
+<img width="1399" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/76eeff91-53bf-426f-8315-e9a6e9adc91c">
+
+<img width="1400" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/8201da8f-b059-4f32-bb68-178e8a6dc97a">
+
+<img width="1410" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/33237560-24a7-4ac1-b3de-ab7e3ef06e79">
+
+<img width="1396" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/2d60de74-7fbf-4632-8575-fd7fb29e3d0f">
+
+<img width="1383" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/e6de8fdc-9780-4dd0-83af-f9b108998b71">
+
+<img width="1418" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/5f88ddf7-8709-4517-92e8-9c0aa44b4807">
+
+<img width="1398" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/c8496c15-45f4-41aa-a332-5fb3917f8e94">
+
+
+
+
+
+
+
 
 <img width="1152" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/d059659c-6c02-4f4d-b09d-6708d1deaefe">
 
