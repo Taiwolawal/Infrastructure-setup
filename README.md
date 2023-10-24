@@ -34,7 +34,7 @@ terraform {
 }
 ```
 
-Run ```terraform init``` to initialize the directory and ensure all the necessary plugins and dependencies are downloaded
+
 
 
 The architectural diagram needed to setup this infrastructure can be found below
@@ -103,14 +103,6 @@ tags = {
   Environment = "dev"
 }
 ```
-
-Run ```terraform apply``` to provision VPC
-
-<img width="1414" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/cb57dcb3-ac1b-4eb1-a0a6-e1826a3ed5d0">
-
-<img width="1421" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/90f90e88-3378-4a54-9dbf-172b90ee156c">
-
-<img width="1396" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0e235c5f-7345-4ff6-bcd7-a3c10aca7a8a">
 
 
 ## Database
@@ -474,6 +466,12 @@ eks_managed_node_groups = {
 ```
 
 Run ```terraform init``` to download the necessary modules and run ```terraform apply```
+
+<img width="1414" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/cb57dcb3-ac1b-4eb1-a0a6-e1826a3ed5d0">
+
+<img width="1421" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/90f90e88-3378-4a54-9dbf-172b90ee156c">
+
+<img width="1396" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0e235c5f-7345-4ff6-bcd7-a3c10aca7a8a">
 
 <img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f59789db-4c22-46d5-b335-49484e9cc720">
 
