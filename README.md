@@ -227,9 +227,34 @@ deletion_protection  = false
 
 <img width="1371" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ae430eae-6aa4-4822-a489-e433c75b6693">
 
+## ECR
+Key Notes:
+Private Repository: Specify the repository to be private
+
+```
+data "aws_caller_identity" "current" {}
+
+module "ecr" {
+  source                   = "terraform-aws-modules/ecr/aws"
+  version                  = "1.5.1"
+  repository_name          = var.repository_name
+  repository_type          = var.repository_type
+  create_lifecycle_policy  = var.create_lifecycle_policy
+  repository_read_write_access_arns = [data.aws_caller_identity.current.arn]
+  tags                              = var.tags
+}
+```
+```
+################
+# ECR variables
+################
+repository_name         = "my-ecr"
+repository_type         = "private"
+create_lifecycle_policy = false
+```
 
 ## EKS
-Setting up EKS, ensure to provide provider for kubernetes. 
+Setting up EKS, ensure to provide provider for kubernetes. The configuration essentially sets up the kubernetes provider with the necessary information to authenticate and interact with the EKS cluster. 
 
 ```
 provider "kubernetes" {
@@ -243,13 +268,64 @@ provider "kubernetes" {
 }
 ```
 
-The configuration essentially sets up the kubernetes provider with the necessary information to authenticate and interact with the EKS cluster. 
-
 KeyNotes:
 - Worker Nodes: The worker nodes will be placed inside the private subnet which helps to enhance security by reducing its exposure to potential threats and reducing surface attack.
 - Managed Node Group: We will make use of manage node group options since AWS help with Node upgrades, eliminating the need for manual update in the node group and other advantages.
 - Instance Type: We will make use of different instances for different workloads to help minimize cost as much as possible e.g. using a mix of spot and on-demand instances. 
 - Adding users: To allow users to connect to the cluster, we specify manage_aws_auth_configmap to be true.
+- ECR Access: There is need to give the worker nodes access to pull and push to the ECR
+
+Create policy giving access to perform certain action against ECR
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:DescribeImageScanFindings",
+                "ecr:StartImageScan",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:UploadLayerPart",
+                "ecr:BatchDeleteImage",
+                "ecr:ListImages",
+                "ecr:PutImage",
+                "ecr:BatchGetImage",
+                "ecr:CompleteLayerUpload",
+                "ecr:DescribeImages",
+                "ecr:InitiateLayerUpload",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetRepositoryPolicy",
+                "ecr:GetLifecyclePolicy"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:DescribeRegistry",
+                "ecr:DescribePullThroughCacheRules",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+Create a custom policy for the eks
+```
+#############ECR Access for Worker Node################
+resource "aws_iam_policy" "ecr_access_for_worker_node" {
+  name        = "ecr-access-policy"
+  description = "ECR Access Policy"
+  policy      = file("policies/FullECRAccessPolicy.json")
+}
+```
+
+Attach the policy as a role to eks
 
 ```
 module "eks" {
@@ -265,16 +341,13 @@ module "eks" {
   enable_irsa                     = var.enable_irsa
   eks_managed_node_groups         = var.eks_managed_node_groups
   manage_aws_auth_configmap       = var.manage_aws_auth_configmap
-  aws_auth_roles = [
-    {
-      rolearn  = module.eks_admins_iam_role.iam_role_arn
-      username = module.eks_admins_iam_role.iam_role_name
-      groups   = ["system:masters"]
-    },
-  ]
+  aws_auth_roles = var.aws_auth_roles
+  iam_role_additional_policies = var.iam_role_additional_policies
+  eks_managed_node_group_defaults = var.eks_managed_node_group_defaults
 
   tags = var.tags
 }
+
 ```
 
 ```
