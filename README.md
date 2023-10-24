@@ -314,6 +314,7 @@ Create policy giving access to perform certain action against ECR
         }
     ]
 }
+```
 
 Create a custom policy for the eks
 ```
