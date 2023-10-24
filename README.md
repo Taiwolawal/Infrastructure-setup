@@ -477,31 +477,10 @@ Run ```terraform init``` to download the necessary modules and run ```terraform 
 
 <img width="1398" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/c8496c15-45f4-41aa-a332-5fb3917f8e94">
 
-
-
-
-
-
-
-
 <img width="1152" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/d059659c-6c02-4f4d-b09d-6708d1deaefe">
 
 
 <img width="1414" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/cb57dcb3-ac1b-4eb1-a0a6-e1826a3ed5d0">
 
-<img width="1421" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/90f90e88-3378-4a54-9dbf-172b90ee156c">
 
-<img width="1396" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0e235c5f-7345-4ff6-bcd7-a3c10aca7a8a">
-
-<img width="1395" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/e873f095-5a40-4326-aeda-0c305c97bad8">
-
-<img width="1394" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/239468bb-2913-4908-84c7-1139b84bbe52">
-
-<img width="1371" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ae430eae-6aa4-4822-a489-e433c75b6693">
-
-<img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f59789db-4c22-46d5-b335-49484e9cc720">
-
-<img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/6fefb7de-0528-4199-b1aa-ab1d9d831625">
-
-<img width="1433" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/9bc0280c-f2dc-4258-8705-30ca6a180e2c">
 
