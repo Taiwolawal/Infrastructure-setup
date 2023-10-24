@@ -41,6 +41,9 @@ The architectural diagram needed to setup this infrastructure can be found below
 
 We will be starting our infrastructure provisioning with VPC, which is where all the resources will be located and the setups will be created using modules. Modules allow for code reusability
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/8f249925-a093-49b1-95ba-bec9b0080871)
+
+
 ## VPC
 Key Notes:
 - High availabiliy: To ensure we have high availability we are working with 2 AZs.
