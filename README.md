@@ -349,6 +349,10 @@ module "eks" {
 }
 
 ```
+The values for the role are highlighted in the screenshot below
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/d8fdec05-76af-4ef5-8b5c-f5dfe0302aac)
+
 
 ```
 ################
