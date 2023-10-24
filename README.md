@@ -480,7 +480,12 @@ Run ```terraform init``` to download the necessary modules and run ```terraform 
 <img width="1152" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/d059659c-6c02-4f4d-b09d-6708d1deaefe">
 
 
-<img width="1414" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/cb57dcb3-ac1b-4eb1-a0a6-e1826a3ed5d0">
+
+
+
+
+
+
 
 
 
