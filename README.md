@@ -314,9 +314,11 @@ Create policy giving access to perform certain action against ECR
         }
     ]
 }
+
 ```
 
 Create a custom policy for the eks
+
 ```
 #############ECR Access for Worker Node################
 resource "aws_iam_policy" "ecr_access_for_worker_node" {
