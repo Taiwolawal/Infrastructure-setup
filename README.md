@@ -463,6 +463,8 @@ eks_managed_node_groups = {
 
 Run ```terraform init``` to download the necessary modules and run ```terraform apply```
 
+<img width="1187" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/2e2f958f-9777-4bb2-ac3e-92f7d85a12b0">
+
 <img width="1399" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/76eeff91-53bf-426f-8315-e9a6e9adc91c">
 
 <img width="1400" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/8201da8f-b059-4f32-bb68-178e8a6dc97a">
