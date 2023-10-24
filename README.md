@@ -360,6 +360,7 @@ If a user wants to connect to the cluster:
 - Create a policy for eks access
 - Create IAM role to access the cluster
 - Assume the IAM role
+- Attach the role to aws_auth_roles
 
 ```
 ## Policy to allow access to EKS
