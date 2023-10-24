@@ -1,17 +1,13 @@
-data "aws_caller_identity" "current" {}
+locals {
+  db_creds = jsondecode(
+    data.aws_secretsmanager_secret_version.creds.secret_string
+  )
 
-module "ecr" {
-  source                   = "terraform-aws-modules/ecr/aws"
-  version                  = "1.5.1"
-  repository_name          = var.repository_name
-  repository_type          = var.repository_type
-  create_repository_policy = var.create_repository_policy
-  create_lifecycle_policy  = var.create_lifecycle_policy
   repository_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Sid    = "AllowEKSAccess",
+        Sid    = "AllowECRAccess",
         Effect = "Allow",
         Principal = {
           "AWS" : module.eks_admins_iam_role.iam_role_arn
@@ -40,6 +36,26 @@ module "ecr" {
       }
     ]
   })
-  repository_read_write_access_arns = [data.aws_caller_identity.current.arn]
-  tags                              = var.tags
+
+  aws_auth_roles = [
+    {
+      rolearn  = module.eks_admins_iam_role.iam_role_arn
+      username = module.eks_admins_iam_role.iam_role_name
+      groups   = ["system:masters"]
+    },
+  ]
+
+   iam_role_additional_policies = {
+    FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
+    OtherAccessPolicy   = aws_iam_policy.other_ecr_access_for_worker_node.arn
+  }
+
+  eks_managed_node_group_defaults = {
+    iam_role_additional_policies = {
+      FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
+      OtherAccessPolicy   = aws_iam_policy.other_ecr_access_for_worker_node.arn
+    }
+  }
+
+
 }

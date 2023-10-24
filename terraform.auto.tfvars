@@ -99,7 +99,6 @@ egress_with_cidr_blocks = []
 ################
 # ECR variables
 ################
-repository_name          = "my-ecr"
-repository_type          = "private"
-create_repository_policy = true
-create_lifecycle_policy  = false
+repository_name         = "my-ecr"
+repository_type         = "private"
+create_lifecycle_policy = false

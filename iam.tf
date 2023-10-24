@@ -1,4 +1,4 @@
-## Policy to allow access to EKS for Admin
+## Policy to allow access to EKS
 module "eks_admin_iam_policy" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
   version = "5.3.1"
@@ -20,39 +20,8 @@ module "eks_admin_iam_policy" {
   })
 }
 
-## Policy to allow access to EKS for Developers
-module "eks_developer_iam_policy" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "5.3.1"
 
-  name          = "allow-eks-access-developer"
-  create_policy = true
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "eks:DescribeCluster",
-          "eks:DescribeNodegroup",
-          "eks:ListNodegroups",
-          "eks:DescribeCluster",
-          "eks:ListClusters",
-          "eks:AccessKubernetesApi",
-          "eks:ListUpdates",
-          "eks:ListFargateProfiles",
-          "eks:ListIdentityProviderConfigs",
-          "eks:ListAddons",
-          "eks:DescribeAddonVersions"
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
-    ]
-  })
-}
-
-## IAM Role that will be used to access the cluster by Admin
+## IAM Role that will be used to access the cluster
 module "eks_admins_iam_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "5.3.1"
@@ -66,46 +35,6 @@ module "eks_admins_iam_role" {
   trusted_role_arns = [
     "arn:aws:iam::${module.vpc.vpc_owner_id}:root"
   ]
-}
-
-## IAM Role that will be used to access the cluster by Developers
-module "eks_developer_iam_role" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "5.3.1"
-
-  role_name         = "eks-developer"
-  create_role       = true
-  role_requires_mfa = false
-
-  custom_role_policy_arns = [module.eks_developer_iam_policy.arn]
-
-  trusted_role_arns = [
-    "arn:aws:iam::${module.vpc.vpc_owner_id}:root"
-  ]
-}
-
-## Create Admin user to access to the role created
-module "admin_user" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "5.3.1"
-
-  name                          = "admin"
-  create_iam_access_key         = false
-  create_iam_user_login_profile = false
-
-  force_destroy = true
-}
-
-## Create Developer user to access to the role created
-module "developer_user" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "5.3.1"
-
-  name                          = "developer"
-  create_iam_access_key         = false
-  create_iam_user_login_profile = false
-
-  force_destroy = true
 }
 
 ## IAM policy to assume the IAM role
@@ -129,45 +58,3 @@ module "allow_assume_eks_admins_iam_policy" {
   })
 }
 
-module "allow_assume_eks_developer_iam_policy" {
-  source        = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version       = "5.3.1"
-  name          = "allow-assume-eks-developer-iam-role"
-  create_policy = true
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "sts:AssumeRole",
-        ]
-        Effect   = "Allow"
-        Resource = module.eks_developer_iam_role.iam_role_arn
-      },
-    ]
-  })
-}
-
-## Create an IAM group with users and attach assume policy
-module "eks_admins_iam_group" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "5.3.1"
-
-  name                              = "eks-admin"
-  attach_iam_self_management_policy = false
-  create_group                      = true
-  group_users                       = [module.admin_user.iam_user_name]
-  custom_group_policy_arns          = [module.allow_assume_eks_admins_iam_policy.arn]
-}
-
-module "eks_developer_iam_group" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "5.3.1"
-
-  name                              = "eks-developer"
-  attach_iam_self_management_policy = false
-  create_group                      = true
-  group_users                       = [module.developer_user.iam_user_name]
-  custom_group_policy_arns          = [module.allow_assume_eks_developer_iam_policy.arn]
-}

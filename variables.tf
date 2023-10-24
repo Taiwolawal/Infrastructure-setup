@@ -199,12 +199,13 @@ variable "repository_type" {
   type = string
 }
 
-variable "create_repository_policy" {
-  type = bool
-}
 
 variable "create_lifecycle_policy" {
   type = bool
+}
+
+variable "repository_policy" {
+  type = string
 }
 
 

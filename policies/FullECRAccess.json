@@ -2,6 +2,7 @@
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
                 "ecr:DescribeImageScanFindings",
@@ -17,7 +18,14 @@
                 "ecr:InitiateLayerUpload",
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:GetRepositoryPolicy",
-                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicy"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
                 "ecr:DescribeRegistry",
                 "ecr:DescribePullThroughCacheRules",
                 "ecr:GetAuthorizationToken"
@@ -26,3 +34,4 @@
         }
     ]
 }
+
