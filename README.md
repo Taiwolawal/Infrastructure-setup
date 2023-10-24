@@ -164,7 +164,6 @@ ingress_with_cidr_blocks = [
 ]
 egress_with_cidr_blocks = []
 ```
-<img width="1395" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/e873f095-5a40-4326-aeda-0c305c97bad8">
 
 We will setup our database using the secret we created using AWS Secret Manager containing the database username and password and also make use of the security group we created for the database
 
@@ -218,9 +217,6 @@ major_engine_version = "8.0"
 deletion_protection  = false
 ```
 
-<img width="1394" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/239468bb-2913-4908-84c7-1139b84bbe52">
-
-<img width="1371" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ae430eae-6aa4-4822-a489-e433c75b6693">
 
 ## ECR
 Key Notes:
@@ -472,6 +468,12 @@ Run ```terraform init``` to download the necessary modules and run ```terraform 
 <img width="1421" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/90f90e88-3378-4a54-9dbf-172b90ee156c">
 
 <img width="1396" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0e235c5f-7345-4ff6-bcd7-a3c10aca7a8a">
+
+<img width="1395" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/e873f095-5a40-4326-aeda-0c305c97bad8">
+
+<img width="1394" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/239468bb-2913-4908-84c7-1139b84bbe52">
+
+<img width="1371" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ae430eae-6aa4-4822-a489-e433c75b6693">
 
 <img width="1364" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f59789db-4c22-46d5-b335-49484e9cc720">
 
