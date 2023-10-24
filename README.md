@@ -39,6 +39,9 @@ Run ```terraform init``` to initialize the directory and ensure all the necessar
 
 The architectural diagram needed to setup this infrastructure can be found below
 
+<img width="792" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/feaa2a8c-b9cb-4dc7-9432-03673e13bcc3">
+
+
 We will be starting our infrastructure provisioning with VPC, which is where all the resources will be located and the setups will be created using modules. Modules allow for code reusability
 
 ![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/8f249925-a093-49b1-95ba-bec9b0080871)
@@ -361,6 +364,9 @@ If a user wants to connect to the cluster:
 - Create IAM role to access the cluster
 - Assume the IAM role
 - Attach the role to aws_auth_roles
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/b18256d5-7d7b-4ab0-a28a-9dadc9a8720d)
+
 
 ```
 ## Policy to allow access to EKS
