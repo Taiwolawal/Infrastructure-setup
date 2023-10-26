@@ -2,7 +2,7 @@ module "sg-rds" {
   source                   = "terraform-aws-modules/security-group/aws"
   version                  = "4.9.0"
   name                     = var.sg-name
-  vpc_id                   = module.vpc.vpc_id
+  vpc_id                   = var.vpc_id
   create                   = var.create
   ingress_cidr_blocks      = var.ingress_cidr_blocks
   ingress_rules            = var.ingress_rules

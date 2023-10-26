@@ -45,15 +45,13 @@ locals {
     },
   ]
 
-   iam_role_additional_policies = {
+  iam_role_additional_policies = {
     FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
-    OtherAccessPolicy   = aws_iam_policy.other_ecr_access_for_worker_node.arn
   }
 
   eks_managed_node_group_defaults = {
     iam_role_additional_policies = {
       FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
-      OtherAccessPolicy   = aws_iam_policy.other_ecr_access_for_worker_node.arn
     }
   }
 

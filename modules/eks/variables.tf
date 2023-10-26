@@ -19,6 +19,14 @@ variable "cluster_addons" {
   type = map(any)
 }
 
+variable "vpc_id" {
+  type = string
+}
+
+variable "subnet_ids" {
+  type = list(string)
+}
+
 variable "aws_auth_roles" {
   type = list(any)
 }

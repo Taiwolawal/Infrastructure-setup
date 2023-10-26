@@ -204,9 +204,9 @@ variable "create_lifecycle_policy" {
   type = bool
 }
 
-variable "repository_policy" {
-  type = string
-}
+# variable "repository_policy" {
+#   type = string
+# }
 
 
 

@@ -22,7 +22,7 @@ tags = {
 # EKS variables
 ################
 cluster_name                    = "dev-eks"
-cluster_version                 = "1.27"
+cluster_version                 = "1.28"
 cluster_endpoint_private_access = true
 cluster_endpoint_public_access  = true
 cluster_addons = {

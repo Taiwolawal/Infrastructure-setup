@@ -1,7 +1,3 @@
-output "security_group_id" {
-  value = [module.sg-rds.security_group_id]
-}
-
 output "vpc_owner_id" {
   value = [module.vpc.vpc_owner_id]
 }
