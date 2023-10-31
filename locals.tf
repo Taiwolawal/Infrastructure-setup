@@ -1,7 +1,7 @@
 locals {
-  db_creds = jsondecode(
-    data.aws_secretsmanager_secret_version.creds.secret_string
-  )
+  # db_creds = jsondecode(
+  #   data.aws_secretsmanager_secret_version.creds.secret_string
+  # )
 
   repository_policy = jsonencode({
     Version = "2012-10-17",
