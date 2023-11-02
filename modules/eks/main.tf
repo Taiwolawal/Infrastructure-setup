@@ -14,6 +14,5 @@ module "eks" {
   aws_auth_roles                  = var.aws_auth_roles
   iam_role_additional_policies    = var.iam_role_additional_policies
   eks_managed_node_group_defaults = var.eks_managed_node_group_defaults
-
   tags = var.tags
 }

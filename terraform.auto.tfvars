@@ -1,18 +1,18 @@
 ##############
 # VPC Variables
 ###############
-vpc_name                     = "EKS-VPC"
-cidr                         = "10.0.0.0/16"
-region                       = "eu-west-1"
-public_subnets               = ["10.0.1.0/24", "10.0.2.0/24"]
-private_subnets              = ["10.0.3.0/24", "10.0.4.0/24"]
+vpc_name        = "EKS-VPC"
+cidr            = "10.0.0.0/16"
+region          = "eu-west-2"
+public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnets = ["10.0.101.0/24", "10.0.102.0/24"]
 # create_database_subnet_group = true
 # database_subnets             = ["10.0.5.0/24", "10.0.6.0/24"]
 # database_subnet_group_name   = "db-subnet"
-enable_nat_gateway           = true
-single_nat_gateway           = true
-enable_dns_hostnames         = true
-enable_dns_support           = true
+enable_nat_gateway   = true
+single_nat_gateway   = true
+enable_dns_hostnames = true
+enable_dns_support   = true
 tags = {
   Terraform   = "true"
   Environment = "dev"
@@ -27,7 +27,7 @@ cluster_endpoint_private_access = true
 cluster_endpoint_public_access  = true
 cluster_addons = {
   coredns = {
-    most_recent = true
+    most_recent                 = true
     resolve_conflicts_on_create = "OVERWRITE"
     resolve_conflicts_on_update = "OVERWRITE"
   }

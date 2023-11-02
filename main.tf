@@ -1,18 +1,18 @@
 module "vpc" {
-  source                       = "./modules/vpc"
-  vpc_name                     = var.vpc_name
-  cidr                         = var.cidr
-  azs                          = ["${var.region}a", "${var.region}b"]
-  private_subnets              = var.private_subnets
-  public_subnets               = var.public_subnets
+  source          = "./modules/vpc"
+  vpc_name        = var.vpc_name
+  cidr            = var.cidr
+  azs             = ["${var.region}a", "${var.region}b"]
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
   # create_database_subnet_group = var.create_database_subnet_group
   # database_subnets             = var.database_subnets
   # database_subnet_group_name   = var.database_subnet_group_name
-  enable_nat_gateway           = var.enable_nat_gateway
-  single_nat_gateway           = var.single_nat_gateway
-  enable_dns_hostnames         = var.enable_dns_hostnames
-  enable_dns_support           = var.enable_dns_support
-  tags                         = var.tags
+  enable_nat_gateway   = var.enable_nat_gateway
+  single_nat_gateway   = var.single_nat_gateway
+  enable_dns_hostnames = var.enable_dns_hostnames
+  enable_dns_support   = var.enable_dns_support
+  tags                 = var.tags
 }
 
 # module "rds" {
