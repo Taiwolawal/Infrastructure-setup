@@ -30,6 +30,10 @@ variable "subnet_ids" {
 variable "aws_auth_roles" {
   type = list(any)
 }
+
+variable "aws_auth_users" {
+  type = list(any)
+}
 variable "iam_role_additional_policies" {
   type = map(string)
 }

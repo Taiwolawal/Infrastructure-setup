@@ -37,6 +37,22 @@ locals {
     ]
   })
 
+  aws_auth_developers = [
+    {
+      rolearn  = module.eks_developer_iam_role.iam_role_arn
+      username = module.eks_developer_iam_role.iam_role_name
+      groups   = ["developers"]
+    }
+  ]
+
+  aws_auth_admins = [
+    {
+      rolearn  = module.eks_admins_iam_role.iam_role_arn
+      username = module.eks_admins_iam_role.iam_role_name
+      groups   = ["system:masters"]
+    }
+  ]
+
   aws_auth_roles = [
     {
       rolearn  = module.eks_admins_iam_role.iam_role_arn
@@ -57,3 +73,5 @@ locals {
 
 
 }
+
+    

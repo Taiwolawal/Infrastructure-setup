@@ -11,5 +11,13 @@ output "vpc_id" {
 }
 
 output "private_subnets" {
-    value = module.vpc.private_subnets
+  value = module.vpc.private_subnets
+}
+
+output "admin_iam_user_name" {
+  value = module.admin_user.iam_user_name
+}
+
+output "developer_iam_user_name" {
+  value = module.developer_user.iam_user_name
 }

@@ -38,7 +38,6 @@ cluster_addons = {
     most_recent = true
   }
 }
-
 manage_aws_auth_configmap = true
 enable_irsa               = true
 eks_managed_node_groups = {
@@ -50,7 +49,6 @@ eks_managed_node_groups = {
     instance_types = ["t3.medium"]
     capacity_type  = "ON_DEMAND"
   }
-
   spot = {
     desired_size = 1
     min_size     = 1
@@ -60,6 +58,10 @@ eks_managed_node_groups = {
     capacity_type  = "SPOT"
   }
 }
+
+admin_usernames     = ["taiwo","uzu"]
+developer_usernames = ["kehinde", "tobi"]
+
 
 
 
