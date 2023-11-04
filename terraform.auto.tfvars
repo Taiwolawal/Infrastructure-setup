@@ -59,8 +59,8 @@ eks_managed_node_groups = {
   }
 }
 
-admin_usernames     = ["taiwo","uzu"]
-developer_usernames = ["kehinde", "tobi"]
+admin_usernames     = "taiwo"
+developer_usernames = "kehinde"
 
 
 

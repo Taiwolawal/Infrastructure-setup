@@ -102,19 +102,25 @@ variable "eks_managed_node_groups" {
 }
 
 variable "developer_usernames" {
-  type        = list(string)
-  description = "Names of developers for aws_auth map and namespaces"
+  type        = string
+  description = "Names of developer for aws_auth map and namespaces"
 }
 
 variable "admin_usernames" {
-  type        = list(string)
-  description = "Name of admin users"
+  type        = string
+  description = "Name of admin user"
 }
 
 
 
 variable "manage_aws_auth_configmap" {
   type = bool
+}
+
+variable "namespaces" {
+  type        = list(string)
+  description = "Kubernetes namespaces to create"
+  default     = []
 }
 
 ## RDS VARIABLE

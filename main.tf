@@ -74,3 +74,57 @@ module "eks" {
   eks_managed_node_group_defaults = local.iam_role_additional_policies
   tags                            = var.tags
 }
+
+# create namespaces
+resource "kubernetes_namespace" "namespaces" {
+  for_each = toset(var.namespaces)
+  metadata {
+    labels = {
+      managed_by = "terraform"
+    }
+
+    name = each.key
+  }
+}
+
+
+resource "kubernetes_role" "developers_role" {
+  for_each = toset(var.developer_usernames)
+  metadata {
+    name      = "${each.key}-role"
+    namespace = each.key
+    labels = {
+      managed_by = "terraform"
+    }
+  }
+
+  rule {
+    api_groups = ["*"]
+    resources  = ["*"]
+    verbs      = ["*"]
+  }
+  depends_on = [
+    kubernetes_namespace.namespaces
+  ]
+}
+
+resource "kubernetes_role_binding" "developers" {
+  for_each = toset(var.developer_usernames)
+  metadata {
+    name      = "${each.key}-role-binding"
+    namespace = each.key
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "Role"
+    name      = "${each.key}-role"
+  }
+  subject {
+    kind      = "Group"
+    name      = "developers:${each.key}"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  depends_on = [
+    kubernetes_namespace.namespaces
+  ]
+}

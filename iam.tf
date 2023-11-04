@@ -130,8 +130,7 @@ module "allow_assume_eks_developer_iam_policy" {
 module "admin_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
   version = "5.3.1"
-  for_each = toset(var.admin_usernames)
-  name                          = each.value
+  name                          = var.admin_usernames
   create_iam_access_key         = false
   create_iam_user_login_profile = false
   force_destroy = true
@@ -141,8 +140,7 @@ module "admin_user" {
 module "developer_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
   version = "5.3.1"
-  for_each = toset(var.developer_usernames)
-  name                          = each.value
+  name                          = var.developer_usernames
   create_iam_access_key         = false
   create_iam_user_login_profile = false
   force_destroy = true
@@ -156,7 +154,7 @@ module "eks_admins_iam_group" {
   name                              = "eks-admin"
   attach_iam_self_management_policy = false
   create_group                      = true
-  group_users                       = module.admin_user[*].iam_user_name
+  group_users                       = [module.admin_user.iam_user_name]
   custom_group_policy_arns          = [module.allow_assume_eks_admins_iam_policy.arn]
 }
 
@@ -167,6 +165,6 @@ module "eks_developer_iam_group" {
   name                              = "eks-developer"
   attach_iam_self_management_policy = false
   create_group                      = true
-  group_users                       = module.developer_user[*].iam_user_name
+  group_users                       = [module.developer_user.iam_user_name]
   custom_group_policy_arns          = [module.allow_assume_eks_developer_iam_policy.arn]
 }
