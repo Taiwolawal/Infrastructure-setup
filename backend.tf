@@ -1,7 +1,10 @@
 terraform {
   backend "s3" {
-    bucket = "eks-demo-prod-bucket"
+    bucket = "s3-eks-backend"
     key    = "terraform/dev-blue.tfstate"
-    region = "us-east-1"
+    region = "eu-west-2"
   }
 }
+
+# s3-eks-backend
+#  key    = "terraform/dev-blue.tfstate"
