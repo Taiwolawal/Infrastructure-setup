@@ -85,7 +85,7 @@ module "eks_developer_iam_role" {
   ]
 }
 
-## IAM policy to assume the IAM role
+## IAM policy to assume the IAM role for admin
 module "allow_assume_eks_admins_iam_policy" {
   source        = "terraform-aws-modules/iam/aws//modules/iam-policy"
   version       = "5.3.1"
@@ -106,6 +106,7 @@ module "allow_assume_eks_admins_iam_policy" {
   })
 }
 
+## IAM policy to assume the IAM role for developers
 module "allow_assume_eks_developer_iam_policy" {
   source        = "terraform-aws-modules/iam/aws//modules/iam-policy"
   version       = "5.3.1"

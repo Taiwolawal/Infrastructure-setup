@@ -59,10 +59,10 @@ eks_managed_node_groups = {
   }
 }
 
-admin_usernames     = "taiwo"
-developer_usernames = "kehinde"
+admin_usernames     = ["taiwo"]
+developer_usernames = ["kenny"]
 
-namespaces = ["dev", "uat"]
+namespace = "test"
 
 
 

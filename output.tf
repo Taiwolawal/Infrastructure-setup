@@ -10,12 +10,13 @@ output "vpc_id" {
   value = [module.vpc.vpc_id]
 }
 
-output "private_subnets" {
-  value = module.vpc.private_subnets
-}
+
+# output "admin_user" {
+#   value = module.eks_admins_iam_group.username
+# }
 
 # output "admin_iam_user_name" {
-#   value = module.admin_user.iam_user_name
+#   value = module.eks_admins_iam_group.username.arn
 # }
 
 # output "developer_iam_user_name" {

@@ -69,6 +69,7 @@ module "eks" {
   eks_managed_node_groups         = var.eks_managed_node_groups
   manage_aws_auth_configmap       = var.manage_aws_auth_configmap
   aws_auth_roles                  = local.aws_auth_roles
+  # aws_auth_users                  = concat(local.aws_auth_admins)
   aws_auth_users                  = concat(local.aws_auth_admins, local.aws_auth_developers)
   iam_role_additional_policies    = local.iam_role_additional_policies
   eks_managed_node_group_defaults = local.iam_role_additional_policies
@@ -76,48 +77,44 @@ module "eks" {
 }
 
 # create namespaces
-resource "kubernetes_namespace" "namespaces" {
-  for_each = toset(var.namespaces)
+resource "kubernetes_namespace" "namespace" {
   metadata {
     labels = {
       managed_by = "terraform"
     }
 
-    name = each.key
+    name = var.namespace
   }
 }
 
 
 resource "kubernetes_role" "developers_role" {
-  for_each = toset(var.namespaces)
   metadata {
     name      = "${var.developer_usernames}-role"
-    namespace = each.key
+    namespace = var.namespace
     labels = {
       managed_by = "terraform"
     }
   }
-
   rule {
     api_groups = ["*"]
-    resources  = ["nodes", "namespaces", "pods"]
-    verbs      = ["get", "list"]
+    resources  = ["pods", "namespace", "node"]
+    verbs      = ["list"]
   }
   depends_on = [
-    kubernetes_namespace.namespaces
+    kubernetes_namespace.namespace
   ]
 }
 
 resource "kubernetes_role_binding" "developers" {
-  for_each = toset(var.namespaces)
   metadata {
     name      = "${var.developer_usernames}-role-binding"
-    namespace = each.key
+    namespace = var.namespace
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "Role"
-    name      = "${var.developer_usernames}-role"
+    name      = kubernetes_role.developers_role.metadata[0].name
   }
   subject {
     kind      = "Group"
@@ -125,6 +122,10 @@ resource "kubernetes_role_binding" "developers" {
     api_group = "rbac.authorization.k8s.io"
   }
   depends_on = [
-    kubernetes_namespace.namespaces
+    kubernetes_namespace.namespace
   ]
 }
+
+# kubernetes_role_binding.developers.subject[0].name
+
+# groups   = [ "${kubernetes_role_binding.developers.subject[0].name}" ]
