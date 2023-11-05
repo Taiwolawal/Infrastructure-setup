@@ -107,8 +107,8 @@ module "allow_assume_eks_admins_iam_policy" {
 }
 
 module "allow_assume_eks_developer_iam_policy" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "5.3.1"
+  source        = "terraform-aws-modules/iam/aws//modules/iam-policy"
+  version       = "5.3.1"
   name          = "allow-assume-eks-developer-iam-role"
   create_policy = true
 
@@ -128,22 +128,22 @@ module "allow_assume_eks_developer_iam_policy" {
 
 ## Create Admin users to access the cluster
 module "admin_user" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "5.3.1"
+  source                        = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version                       = "5.3.1"
   name                          = var.admin_usernames
   create_iam_access_key         = false
   create_iam_user_login_profile = false
-  force_destroy = true
+  force_destroy                 = true
 }
 
 ## Create Developer users to access the cluster
 module "developer_user" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "5.3.1"
+  source                        = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version                       = "5.3.1"
   name                          = var.developer_usernames
   create_iam_access_key         = false
   create_iam_user_login_profile = false
-  force_destroy = true
+  force_destroy                 = true
 }
 
 ## Create an IAM group with users and attach assume policy

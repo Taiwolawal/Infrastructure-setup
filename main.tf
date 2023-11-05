@@ -89,9 +89,9 @@ resource "kubernetes_namespace" "namespaces" {
 
 
 resource "kubernetes_role" "developers_role" {
-  for_each = toset(var.developer_usernames)
+  for_each = toset(var.namespaces)
   metadata {
-    name      = "${each.key}-role"
+    name      = "${var.developer_usernames}-role"
     namespace = each.key
     labels = {
       managed_by = "terraform"
@@ -100,8 +100,8 @@ resource "kubernetes_role" "developers_role" {
 
   rule {
     api_groups = ["*"]
-    resources  = ["*"]
-    verbs      = ["*"]
+    resources  = ["nodes", "namespaces", "pods"]
+    verbs      = ["get", "list"]
   }
   depends_on = [
     kubernetes_namespace.namespaces
@@ -109,19 +109,19 @@ resource "kubernetes_role" "developers_role" {
 }
 
 resource "kubernetes_role_binding" "developers" {
-  for_each = toset(var.developer_usernames)
+  for_each = toset(var.namespaces)
   metadata {
-    name      = "${each.key}-role-binding"
+    name      = "${var.developer_usernames}-role-binding"
     namespace = each.key
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "Role"
-    name      = "${each.key}-role"
+    name      = "${var.developer_usernames}-role"
   }
   subject {
     kind      = "Group"
-    name      = "developers:${each.key}"
+    name      = "developers"
     api_group = "rbac.authorization.k8s.io"
   }
   depends_on = [

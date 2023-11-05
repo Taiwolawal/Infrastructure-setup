@@ -62,6 +62,7 @@ eks_managed_node_groups = {
 admin_usernames     = "taiwo"
 developer_usernames = "kehinde"
 
+namespaces = ["dev", "uat"]
 
 
 
