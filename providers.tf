@@ -20,3 +20,9 @@ provider "kubernetes" {
     command     = "aws"
   }
 }
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}

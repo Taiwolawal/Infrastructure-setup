@@ -131,7 +131,7 @@ module "allow_assume_eks_developer_iam_policy" {
 module "admin_user" {
   source                        = "terraform-aws-modules/iam/aws//modules/iam-user"
   version                       = "5.3.1"
-  name                          = var.admin_usernames
+  name                          = var.admin_username
   create_iam_access_key         = false
   create_iam_user_login_profile = false
   force_destroy                 = true
@@ -141,7 +141,7 @@ module "admin_user" {
 module "developer_user" {
   source                        = "terraform-aws-modules/iam/aws//modules/iam-user"
   version                       = "5.3.1"
-  name                          = var.developer_usernames
+  name                          = var.developer_username
   create_iam_access_key         = false
   create_iam_user_login_profile = false
   force_destroy                 = true

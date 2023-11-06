@@ -69,7 +69,6 @@ module "eks" {
   eks_managed_node_groups         = var.eks_managed_node_groups
   manage_aws_auth_configmap       = var.manage_aws_auth_configmap
   aws_auth_roles                  = local.aws_auth_roles
-  # aws_auth_users                  = concat(local.aws_auth_admins)
   aws_auth_users                  = concat(local.aws_auth_admins, local.aws_auth_developers)
   iam_role_additional_policies    = local.iam_role_additional_policies
   eks_managed_node_group_defaults = local.iam_role_additional_policies
@@ -90,7 +89,7 @@ resource "kubernetes_namespace" "namespace" {
 
 resource "kubernetes_role" "developers_role" {
   metadata {
-    name      = "${var.developer_usernames}-role"
+    name      = "${var.developer_username}-role"
     namespace = var.namespace
     labels = {
       managed_by = "terraform"
@@ -108,7 +107,7 @@ resource "kubernetes_role" "developers_role" {
 
 resource "kubernetes_role_binding" "developers" {
   metadata {
-    name      = "${var.developer_usernames}-role-binding"
+    name      = "${var.developer_username}-role-binding"
     namespace = var.namespace
   }
   role_ref {
@@ -125,7 +124,3 @@ resource "kubernetes_role_binding" "developers" {
     kubernetes_namespace.namespace
   ]
 }
-
-# kubernetes_role_binding.developers.subject[0].name
-
-# groups   = [ "${kubernetes_role_binding.developers.subject[0].name}" ]

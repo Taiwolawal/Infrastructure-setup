@@ -101,13 +101,13 @@ variable "eks_managed_node_groups" {
   type = map(any)
 }
 
-variable "developer_usernames" {
-  type        = list(string)
+variable "developer_username" {
+  type        = string
   description = "Names of developer for aws_auth map and namespaces"
 }
 
-variable "admin_usernames" {
-  type        = list(string)
+variable "admin_username" {
+  type        = string
   description = "Name of admin user"
 }
 
