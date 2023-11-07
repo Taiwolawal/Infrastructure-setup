@@ -492,11 +492,56 @@ Run ```terraform init``` to download the necessary modules and run ```terraform 
 
 
 ## Working with helm Chart
+We will deploy argocd to the cluster
+
+You can use terraform also to deploy applications to your cluster. Ensure you add helm provider and run ```terraform init``` to download the necessary plugin needed to use helm on the cluster.
+
+```
+provider "helm" {
+  kubernetes {
+    host                   = module.eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
+      command     = "aws"
+    }
+  }
+}
+```
+
+Add argo helm chart
 ```helm repo add argo https://argoproj.github.io/argo-helm```
 
 ```helm search repo argocd ``` 
+<img width="956" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/657182c5-f6fb-4e69-b440-aec0ef369d65">
 
+To see the values of argocd helm you will be working with, you can tweak the values for your use case.
 ```helm show values argo/argo-cd --version 3.35.4 > argocd.yaml``` 
+
+
+To deploy argocd to the cluster run the code below. To use your own values for argocd, download argocd values, edit the values and specify the path to the file.
+
+```
+resource "helm_release" "argocd" {
+  name = "argocd"
+
+  repository       = "https://argoproj.github.io/argo-helm"
+  chart            = "argo-cd"
+  namespace        = "argocd"
+  create_namespace = true
+  version          = "3.35.4"
+
+  values = [file("helm-value/argocd.yaml")]
+}
+```
+
+Run ```terraform apply``` to deploy argocd
+
+<img width="745" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/c08bdaf3-6708-4fb0-ab0a-f12c42f3a3c9">
+
+
+
 
 
 
