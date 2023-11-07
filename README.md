@@ -514,9 +514,11 @@ Add argo helm chart
 ```helm repo add argo https://argoproj.github.io/argo-helm```
 
 ```helm search repo argocd ``` 
+
 <img width="956" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/657182c5-f6fb-4e69-b440-aec0ef369d65">
 
 To see the values of argocd helm you will be working with, you can tweak the values for your use case.
+
 ```helm show values argo/argo-cd --version 3.35.4 > argocd.yaml``` 
 
 

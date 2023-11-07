@@ -1,14 +1,14 @@
 ##############
 # VPC Variables
 ###############
-vpc_name        = "MY-EKS"
+vpc_name        = "EKS-VPC"
 cidr            = "10.0.0.0/16"
-region          = "eu-west-2"
+region          = "us-east-1"
 public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
 private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
-# create_database_subnet_group = true
-# database_subnets             = ["10.0.5.0/24", "10.0.6.0/24"]
-# database_subnet_group_name   = "db-subnet"
+create_database_subnet_group = true
+database_subnets             = ["10.0.5.0/24", "10.0.6.0/24"]
+database_subnet_group_name   = "db-subnet"
 enable_nat_gateway   = true
 single_nat_gateway   = true
 enable_dns_hostnames = true
@@ -66,40 +66,40 @@ namespace = "test"
 
 
 
-################
+# ###############
 # Database variables
-################
-# identifier           = "database1"
-# create_db_instance   = true
-# engine               = "mysql"
-# engine_version       = "8.0.33"
-# instance_class       = "db.t2.medium"
-# allocated_storage    = 5
-# db_name              = "demodb"
-# port                 = "3306"
-# family               = "mysql8.0"
-# major_engine_version = "8.0"
-# deletion_protection  = false
+# ###############
+identifier           = "database1"
+create_db_instance   = true
+engine               = "mysql"
+engine_version       = "8.0.33"
+instance_class       = "db.t2.medium"
+allocated_storage    = 5
+db_name              = "demodb"
+port                 = "3306"
+family               = "mysql8.0"
+major_engine_version = "8.0"
+deletion_protection  = false
 
-################
+# ###############
 # Security-Group-RDS variables
-################
-# sg-name             = "mysql-rds-sg"
-# create              = true
-# ingress_cidr_blocks = []
-# egress_cidr_blocks  = ["10.0.0.0/16"]
-# ingress_rules       = [/*"http-80-tcp",*/]
-# egress_rules        = [/*"http-80-tcp",*/]
-# ingress_with_cidr_blocks = [
-#   {
-#     from_port   = 3306
-#     to_port     = 3306
-#     protocol    = "tcp"
-#     description = "open port range 3306/tcp ingress rule"
-#     cidr_blocks = "10.0.0.0/16"
-#   }
-# ]
-# egress_with_cidr_blocks = []
+# ###############
+sg-name             = "mysql-rds-sg"
+create              = true
+ingress_cidr_blocks = []
+egress_cidr_blocks  = ["10.0.0.0/16"]
+ingress_rules       = [/*"http-80-tcp",*/]
+egress_rules        = [/*"http-80-tcp",*/]
+ingress_with_cidr_blocks = [
+  {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    description = "open port range 3306/tcp ingress rule"
+    cidr_blocks = "10.0.0.0/16"
+  }
+]
+egress_with_cidr_blocks = []
 
 ################
 # ECR variables
