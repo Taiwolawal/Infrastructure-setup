@@ -491,7 +491,12 @@ Run ```terraform init``` to download the necessary modules and run ```terraform 
 
 
 
+## Working with helm Chart
+```helm repo add argo https://argoproj.github.io/argo-helm```
 
+```helm search repo argocd ``` 
+
+```helm show values argo/argo-cd --version 3.35.4 > argocd.yaml``` 
 
 
 
