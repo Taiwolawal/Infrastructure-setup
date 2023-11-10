@@ -552,6 +552,9 @@ Get the password to log into argocd, ignore  % when copying
 <img width="1429" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/80d25ed7-15b2-4175-aea6-5ea3368cc37f">
 
 
+Create CD pipeline for our application
+
+
 
 
 
