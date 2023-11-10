@@ -541,7 +541,16 @@ resource "helm_release" "argocd" {
 
 Run ```terraform apply``` to deploy argocd
 
-<img width="745" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/c08bdaf3-6708-4fb0-ab0a-f12c42f3a3c9">
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/72679d1d-c519-49dc-bf0d-109e00381ea5)
+
+Get the password to log into argocd, ignore  % when copying 
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/a0e9d250-c19d-4736-bd25-77bc07f373aa)
+
+<img width="1424" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f25046ec-5e95-4b12-9a68-f1e96c261561">
+
+<img width="1429" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/80d25ed7-15b2-4175-aea6-5ea3368cc37f">
+
 
 
 
