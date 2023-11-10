@@ -510,8 +510,9 @@ provider "helm" {
 }
 ```
 
-Add argo helm chart
-```helm repo add argo https://argoproj.github.io/argo-helm```
+Connect to the cluster ```aws eks update-kubeconfig --name dev-eks --region us-east-1```
+
+Add argo helm chart ```helm repo add argo https://argoproj.github.io/argo-helm```
 
 ```helm search repo argocd ``` 
 
