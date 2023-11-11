@@ -608,6 +608,15 @@ Run ```k apply -f nginx-application/application.yaml``` to deploy the applicatio
 
 The namespace and image version was deployed as expected
 
+# Apps of App
+The Apps of app pattern allows one to be able to deploy lots of application at the same time by  applying just one application.yaml file. In the example below we have a microservice folder which has a folder called apps, the folder can consist of all microservice files. At the moment one microservice file is shown below specifying the path where the app manifest is.
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/2599bf6d-b92e-4932-b6e4-ce01dc5ee879)
+
+The path specified consists of the microservice manifest file
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/36584638-c742-4847-b396-d99a71667cc5)
+
 
 
 
