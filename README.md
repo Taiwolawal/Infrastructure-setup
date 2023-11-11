@@ -552,7 +552,15 @@ Get the password to log into argocd, ignore  % when copying
 <img width="1429" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/80d25ed7-15b2-4175-aea6-5ea3368cc37f">
 
 
-Create CD pipeline for our application
+# ArgoCD Usage
+
+We will be using argocd to deploy applications on the cluster and focus on the points below 
+
+- Helm & Kustomize: Application deployment can be done using helm chart and also kustomise to deploy to different environments you want to.
+- Private Repo: How to handle private repo.
+- Apps of App: Deploying a lot of applications at the same can be very tasking, using the apps of pattern it allows you to just deploy from one file.
+- Secret: How to handle sensitive information 
+- Image Updater: How to handle updating images on manifest file the gitops proper way.
 
 
 
