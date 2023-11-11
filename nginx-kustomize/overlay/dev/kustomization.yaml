@@ -2,6 +2,6 @@
 namespace: staging
 images:
   - name: nginx
-    newTag: v1.25.0
+    newTag: v1.25
 resources:
   - ../../base
