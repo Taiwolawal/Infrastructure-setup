@@ -611,12 +611,26 @@ The namespace and image version was deployed as expected
 # Apps of App
 The Apps of app pattern allows one to be able to deploy lots of application at the same time by  applying just one application.yaml file. In the example below we have a microservice folder which has a folder called apps, the folder can consist of all microservice files. At the moment one microservice file is shown below specifying the path where the app manifest is.
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/b2df016d-f157-4410-a208-80ab62742f67)
+
+
 ![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/2599bf6d-b92e-4932-b6e4-ce01dc5ee879)
 
 The path specified consists of the microservice manifest file
 
 ![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/36584638-c742-4847-b396-d99a71667cc5)
 
+Create an application.yaml file with the git repo of the file and the path to the apps
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/59339807-c5d1-47d9-9838-d3ef958445d3)
+
+Run ```k apply -f apps-of-app-microservice/application.yaml``` to deploy
+
+<img width="1042" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f30dff7b-9ed4-425f-bbf1-9101f872f231">
+
+<img width="1116" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/4f114e27-0533-48d6-91c1-e508fda880f1">
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/202f8957-cb76-46cc-9739-ae91c8a8ecc1)
 
 
 
