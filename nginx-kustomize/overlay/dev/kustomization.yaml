@@ -2,6 +2,6 @@
 namespace: staging
 images:
   - name: nginx
-    newTag: v1.25
+    newTag: 1.25-alpine3.18-slim
 resources:
   - ../../base
