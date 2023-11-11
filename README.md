@@ -581,6 +581,34 @@ Run ```k apply -f metrics-server-helm-argocd/application.yaml``` to ensure its d
 
 <img width="1389" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0df199e0-5280-4e0f-91ad-cf91cb13d0af">
 
+# Kustomise
+Suppose you want to deploy applications to Kubernetes and you have multiple environments i.e. staging, dev, prod, etc. In each environment, you might have different configurations for the deployments in staging you want just 5 replicas, dev 10 replicas, and prod 50 replicas. You need to customize the deployments to accommodate the requirements of the respective environment. Kustomise provides a solution to this, by setting up different folders for each environment and specifying the configuration you want for each environment.
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/ce9e325e-b6d2-408a-b802-7470c0deb5ae)
+
+The base folder consist of the proper app you want to deploy and the kustomization  file specifies what you would like to override  in the overlay folder which consist of different environment you are deploying to
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/34786fff-0cb4-47e3-974b-11ebe6662cd9)
+
+Image and namespace were highlighted, we will change that for our dev environment, the dev folder has a kustomization file with the image and namespace we want to make use of and also references the base folder
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/33fcfbad-9270-4142-8966-7df8f713ce02)
+
+Create an application.yaml with the content in the screenshot showing the repo url and the path where the file for the kustomize overlay is
+
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/3535a080-a442-456e-83b4-d042385135c6)
+
+Run ```k apply -f nginx-application/application.yaml``` to deploy the application
+
+<img width="1206" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f9f64a56-76f9-4ba7-a7f9-0b5cfa20e0ce">
+
+<img width="1358" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/c3f96ab4-daa8-4f30-86eb-7dcd0a5e3364">
+
+<img width="1162" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/d859bda6-60a1-4dbf-91af-65f2d9d6602f">
+
+The namespace and image version was deployed as expected
+
+
 
 
 
