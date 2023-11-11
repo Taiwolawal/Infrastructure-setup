@@ -35,18 +35,18 @@ variable "aws_auth_users" {
   type = list(any)
 }
 variable "iam_role_additional_policies" {
+  # type = list(string)
   type = map(string)
 }
-variable "eks_managed_node_group_defaults" {
-  type = any
-}
+
 variable "enable_irsa" {
   type = bool
 }
 
-# variable "eks_managed_node_group_defaults" {
-#   type = map(any)
-# }
+variable "eks_managed_node_group_defaults" {
+  type = any
+  # type = map(any)
+}
 
 variable "eks_managed_node_groups" {
   type = map(any)

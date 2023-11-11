@@ -1,7 +1,7 @@
 locals {
-  db_creds = jsondecode(
-    data.aws_secretsmanager_secret_version.creds.secret_string
-  )
+  # db_creds = jsondecode(
+  #   data.aws_secretsmanager_secret_version.creds.secret_string
+  # )
 
   repository_policy = jsonencode({
     Version = "2012-10-17",
@@ -70,8 +70,14 @@ locals {
   iam_role_additional_policies = {
     FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
   }
+#   iam_role_additional_policies = ["aws_iam_policy.ecr_access_for_worker_node.arn"]
+#  # iam_role_additional_policies = {
+#   #   FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
+#   # }
+ 
 
   eks_managed_node_group_defaults = {
+    disk_size      = 50
     iam_role_additional_policies = {
       FullECRAccessPolicy = aws_iam_policy.ecr_access_for_worker_node.arn
     }

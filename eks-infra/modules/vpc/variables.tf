@@ -23,19 +23,19 @@ variable "public_subnets" {
   default = []
 }
 
-variable "create_database_subnet_group" {
-  type    = bool
-  default = true
-}
+# variable "create_database_subnet_group" {
+#   type    = bool
+#   default = true
+# }
 
-variable "database_subnets" {
-  type    = list(any)
-  default = []
-}
+# variable "database_subnets" {
+#   type    = list(any)
+#   default = []
+# }
 
-variable "database_subnet_group_name" {
-  type = string
-}
+# variable "database_subnet_group_name" {
+#   type = string
+# }
 
 variable "enable_nat_gateway" {
   description = "Enable NAT Gateways for Private Subnets Outbound Communication"
