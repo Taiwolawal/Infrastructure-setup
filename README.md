@@ -562,12 +562,24 @@ We will be using argocd to deploy applications on the cluster and focus on the p
 - Secret: How to handle sensitive information 
 - Image Updater: How to handle updating images on manifest file the gitops proper way.
 
+# Helm
+Deploying using helm chart using metrics server as an example.
+- Add the repo
+- Download the values and check the values you would like to change
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/767fcd65-60cf-4d8a-ae50-cd0c517613e8)
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/6aa6f8e7-3824-4346-be84-84998413c7fe)
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/550e7d5c-24db-41f1-a586-be65d97a0833)
 
+Run ```k apply -f metrics-server-helm-argocd/application.yaml``` to ensure its deployed
 
+![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/f4623aaa-369e-4d2a-9d18-c116bd6ea692)
 
+<img width="1428" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/6e2f40e3-f242-455f-847f-638d8d3b3cc2">
+
+<img width="1389" alt="image" src="https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/0df199e0-5280-4e0f-91ad-cf91cb13d0af">
 
 
 
