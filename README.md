@@ -632,6 +632,7 @@ Run ```k apply -f apps-of-app-microservice/application.yaml``` to deploy
 
 ![image](https://github.com/Taiwolawal/Infrastructure-setup/assets/50557587/202f8957-cb76-46cc-9739-ae91c8a8ecc1)
 
+Setting up cert-manager ensure you set ```installCRD = true``` 
 
 
 
