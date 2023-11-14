@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: cert-manager
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: taiwolawal360@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod-key
+    solvers:
+    - selector:
+        dnsZones:
+          - dev.easydevop.com
+          - vault.dev.easydevop.com
+          - argocd.dev.easydevop.com
+          - sonarqube.dev.easydevop.com
+          - grafana.dev.easydevop.com
+          - prometheus.dev.easydevop.com
+
+          
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z0435443313TMJNTM113I
+    
